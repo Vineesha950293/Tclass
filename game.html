@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Number Guessing Game</h1>
+  <script>
+    const secretNumber = Math.floor(Math.random() * 100) + 1;
+    let attempts = 5;
+
+    function startGame() {
+      while (attempts > 0) {
+        const guess = parseInt(prompt(`Enter your guess (Attempts left: ${attempts}):`));
+        if (isNaN(guess) || guess < 1 || guess > 100) {
+          alert('Please enter a valid number between 1 and 100');
+          continue;
+        }
+        attempts--;
+        if (guess === secretNumber) {
+          alert('Congratulations! You\'ve guessed the number!');
+          break;
+        } else if (guess > secretNumber) {
+          alert('The number is high.');
+        } else {
+          alert('The number is low.');
+        }
+      }
+      if (attempts === 0) {
+        alert(`Game over! The correct number was ${secretNumber}.`);
+      }
+    }
+    window.onload = startGame;
+  </script>
+</body>
+</html>
